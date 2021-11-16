@@ -1,0 +1,8 @@
+day: "gün"
+hour: "saat"
+minute: "dakika"
+second: "saniye"
+event: "18.00"
+commands:
+  - "say Its 20.00 pm it means"
+  - "E V E N T    T I M E"

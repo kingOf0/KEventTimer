@@ -1,0 +1,6 @@
+main: com.kingOf0.eventtimer.KEventTimer
+version: 1.0
+author: kingOf0
+name: KEventTimer
+softdepend:
+  - PlaceholderAPI
