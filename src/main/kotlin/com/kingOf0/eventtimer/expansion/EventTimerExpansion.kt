@@ -1,5 +1,6 @@
 package com.kingOf0.eventtimer.expansion
 
+import com.kingOf0.eventtimer.KETManager.events
 import com.kingOf0.eventtimer.KETManager.formatMilliSecond
 import com.kingOf0.eventtimer.KETManager.remainingTime
 import me.clip.placeholderapi.expansion.PlaceholderExpansion
@@ -10,12 +11,14 @@ import org.bukkit.scheduler.BukkitRunnable
 
 class EventTimerExpansion(plugin: JavaPlugin) : PlaceholderExpansion() {
 
-    private var message: String = ""
+    private var messages = HashMap<String, String>()
 
     init {
         object : BukkitRunnable() {
             override fun run() {
-                message = formatMilliSecond(remainingTime())
+                for (event in events) {
+                    messages[event.key] = formatMilliSecond(remainingTime(event.value))
+                }
             }
         }.runTaskTimerAsynchronously(plugin, 20, 20)
     }
@@ -37,14 +40,19 @@ class EventTimerExpansion(plugin: JavaPlugin) : PlaceholderExpansion() {
     }
 
     override fun onRequest(player: OfflinePlayer?, params: String): String {
-        return if (params == "remaining")
-            message
-        else ""
+        return foo(params)
     }
 
     override fun onPlaceholderRequest(player: Player?, params: String): String {
-        return if (params == "remaining")
-            message
-        else ""
+        return foo(params)
+    }
+
+    private fun foo(params: String): String {
+        val split = params.split("_")
+        if (split.size != 2) return ""
+        if (split[0] == "remaining") {
+            return messages.getOrDefault(split[1], "")
+        }
+        return ""
     }
 }

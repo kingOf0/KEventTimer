@@ -2,7 +2,13 @@ day: "gün"
 hour: "saat"
 minute: "dakika"
 second: "saniye"
-event: "18.00"
+hourOffset: 3
 commands:
-  - "say Its 20.00 pm it means"
-  - "E V E N T    T I M E"
+  '17:00':
+    - "say Event bir saat sonra başlayacaktır!"
+  '17:50':
+    - "say Event 10 dakika sonra başlayacaktır!"
+  '18:00':
+    - "say Saat 18.00!"
+    - "say E V E N T    Z A M A N I"
+    - "superEventCommand"

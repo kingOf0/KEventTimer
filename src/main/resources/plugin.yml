@@ -1,5 +1,5 @@
 main: com.kingOf0.eventtimer.KEventTimer
-version: 1.0
+version: 1.0.2
 author: kingOf0
 name: KEventTimer
 softdepend:
